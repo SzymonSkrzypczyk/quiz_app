@@ -1,3 +1,4 @@
+from time import sleep
 from random import shuffle
 import typer
 from rich import print as _print
@@ -25,7 +26,7 @@ def main():
             _print(f'[bold red]C)[/bold red] [yellow]{choices[2]}[/yellow]')
             _print(f'[bold red]D)[/bold red] [yellow]{choices[3]}[/yellow]')
             chosen = typer.prompt('What\'s your answer?', type=str, default='A').upper()
-            chosen = choices[CHOICES.get(chosen, 'A')]
+            chosen = choices[CHOICES.get(chosen, 1)]
             if chosen == i.correct:
                 _print('[bold green]That was a correct answer!!![/bold green]')
                 score += 1
@@ -33,6 +34,7 @@ def main():
                 _print('[bold green]That was a wrong answer :( [/bold green]')
             tries += 1
             _print(f'Score: {score}/{tries}...\n')
+            sleep(1)
 
         playing = typer.prompt('Do you want to play again?', default=True, type=bool, confirmation_prompt=True)
 
