@@ -13,7 +13,7 @@ class Question:
     difficulty: str
 
 
-def get_questions(limit: int = 5):
+def get_questions(limit: int = 5) -> List[Question]:
     if limit > 20:
         limit = 20
     r = requests.get(f'https://the-trivia-api.com/api/questions?limit={limit}')
@@ -25,7 +25,7 @@ def get_questions(limit: int = 5):
             i['incorrectAnswers'],
             i['question'],
             i['tags'],
-            i['difficulty']
+            i.get('difficulty', 'not specified')
         ))
     return data
 
